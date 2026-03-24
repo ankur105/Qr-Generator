@@ -51,18 +51,20 @@
       <button onclick="generateTextQR()">Generate QR</button>
     </div>
 
-  <h3>Upload Image</h3>
-
-  <div class="card tab-content" id="image" style="display:none;">
-
-  <br><br>
-
-  <button>Generate QR</button>
+    <!--Image-->
+    <div class="card tab-content" id="image">
+     <h3>Upload Image</h3>
+      <img id="qrImage" src="" alt="QR will appear here" />
+      <div style="margin-top:10px">
+        <button onclick="downloadQR()">Download PNG</button>
+        <button class="secondary" onclick="clearQR()">Clear</button>
+      </div>
+<button>Generate QR</button>
 
 </div>
 
     <!-- WIFI -->
-    <div class="card tab-content hidden" id="wifi">
+    <div class="card tab-content" id="wifi">
       <input id="ssid" placeholder="WiFi Name (SSID)" />
       <input id="password" placeholder="Password" />
       <select id="encryption">
@@ -74,18 +76,10 @@
     </div>
 
     <!-- WHATSAPP -->
-    <div class="card tab-content hidden" id="whatsapp">
+    <div class="card tab-content" id="whatsapp">
       <input id="phone" placeholder="Phone number (with country code)" />
       <input id="message" placeholder="Message (optional)" />
       <button onclick="generateWhatsAppQR()">Generate WhatsApp QR</button>
-    </div>
-
-    <div class="card center">
-      <img id="qrImage" src="" alt="QR will appear here" />
-      <div style="margin-top:10px">
-        <button onclick="downloadQR()">Download PNG</button>
-        <button class="secondary" onclick="clearQR()">Clear</button>
-      </div>
     </div>
 
     <footer>Made for learning. by Atul Verma </footer>

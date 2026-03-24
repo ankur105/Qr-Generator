@@ -29,15 +29,16 @@
     <div class="card">
       <div class="tabs">
         <button class="tab active" data-tab="text">Text / URL</button>
+        <button class="tab" data-tab="Image">Image</button>
         <button class="tab" data-tab="wifi">WiFi</button>
         <button class="tab" data-tab="whatsapp">WhatsApp</button>
-        <button class="tab" data-tab="Image">Image</button>
       </div>
     </div>
 
     <!-- TEXT / URL -->
     <div class="card tab-content" id="text">
       <input id="textInput" placeholder="Enter text or URL" />
+      <input type="file" id="imageInput" accept="image/*" style="display:none;">
       <div class="row">
         <select id="size">
           <option value="200">200x200</option>
@@ -137,5 +138,22 @@
       document.getElementById('qrImage').src = '';
     }
   </script>
+    <script>
+const tabs = document.querySelectorAll(".tab");
+const imageInput = document.getElementById("imageInput");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    if (tab.innerText === "Image") {
+      imageInput.style.display = "block";
+    } else {
+      imageInput.style.display = "none";
+    }
+  });
+});
+</script>
 </body>
 </html>

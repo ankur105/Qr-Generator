@@ -31,7 +31,7 @@
     <div class="card">
       <div class="tabs">
         <button class="tab active" data-tab="text">Text / URL</button>
-        <button class="tab" onclick="showImage()">Image</button>
+        <button class="tab" data-tab="image">Image</button>
         <button class="tab" data-tab="wifi">WiFi</button>
         <button class="tab" data-tab="whatsapp">WhatsApp</button>
       </div>
@@ -51,7 +51,7 @@
       <button onclick="generateTextQR()">Generate QR</button>
     </div>
     
-    <div class="card tab-content" id="image" style="display:block; text-align:center;">
+    <div class="card tab-content" id="image" style="display:none; text-align:center;">
 
   <h3>Upload Image</h3>
 
@@ -151,28 +151,6 @@
       document.getElementById('qrImage').src = '';
     }
   </script>
-    <script>
-const tabs = document.querySelectorAll(".tab");
-const imageInput = document.getElementById("imageInput");
-
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-
-    if (tab.innerText === "Image") {
-      imageInput.style.display = "block";
-    } else {
-      imageInput.style.display = "none";
-    }
-  });
-});
-      function showImage() {
-  document.getElementById("imageBox").style.display = "block";
-}
 </script>
-  <div id="imageBox" style="display:none; text-align:center; margin-top:20px;">
-  <input type="file" accept="image/*">
-</div>
 </body>
 </html>

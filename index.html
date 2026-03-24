@@ -53,15 +53,15 @@
 
     <!--Image-->
     <div class="card tab-content" id="image">
-     <h3>Upload Image</h3>
+      <input id="Upload Image" placeholder="Upload Image" />
+      <div class="row">
       <img id="qrImage" src="" alt="QR will appear here" />
       <div style="margin-top:10px">
         <button onclick="downloadQR()">Download PNG</button>
         <button class="secondary" onclick="clearQR()">Clear</button>
       </div>
-<button>Generate QR</button>
-
-</div>
+        <button onclick="generateTextQr()">download PNG</button>
+       </div>
 
     <!-- WIFI -->
     <div class="card tab-content" id="wifi">

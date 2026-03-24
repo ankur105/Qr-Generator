@@ -55,8 +55,9 @@
     <div class="card tab-content" id="image">
       <h3>Upload Image</h3>
       <input type="file" id="imageInput" accept="image/*">
+       <input id="color" type="color" value="#000000" />
       <br><br>
-        <button onclick="downloadQR()">Download PNG</button>
+        <button onclick="downloadQR()">Generate Qr</button>
     </div>
 
     <!-- WIFI -->
@@ -68,14 +69,14 @@
         <option value="WEP">WEP</option>
         <option value="nopass">No Password</option>
       </select>
-      <button onclick="generateWifiQR()">Generate WiFi QR</button>
+      <button onclick="generateWifiQR()">Generate QR</button>
     </div>
 
     <!-- WHATSAPP -->
     <div class="card tab-content" id="whatsapp">
       <input id="phone" placeholder="Phone number (with country code)" />
       <input id="message" placeholder="Message (optional)" />
-      <button onclick="generateWhatsAppQR()">Generate WhatsApp QR</button>
+      <button onclick="generateWhatsAppQR()">Generate QR</button>
     </div>
 
     <footer>Made for learning. by Atul Verma </footer>

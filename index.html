@@ -40,7 +40,6 @@
     <!-- TEXT / URL -->
     <div class="card tab-content" id="text">
       <input id="textInput" placeholder="Enter text or URL" />
-      <input type="file" id="imageInput" accept="image/*">
       <div class="row">
         <select id="size">
           <option value="200">200x200</option>
@@ -51,6 +50,17 @@
       </div>
       <button onclick="generateTextQR()">Generate QR</button>
     </div>
+    <div class="card tab-content" id="image" style="display:none; text-align:center;">
+
+  <h3>Upload Image</h3>
+
+  <input type="file" id="imageInput" accept="image/*">
+
+  <br><br>
+
+  <button>Generate QR</button>
+
+</div>
 
     <!-- WIFI -->
     <div class="card tab-content hidden" id="wifi">

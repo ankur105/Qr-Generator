@@ -1,145 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QR Code Generator Free</title>
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;display:flex;justify-content:center}
-    .wrap{max-width:900px;width:100%;padding:20px}
-    h1{margin:10px 0 20px;text-align:center}
-    .card{background:#111827;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 10px 20px rgba(0,0,0,.3)}
-    input,select{padding:10px;border-radius:10px;border:none;margin:6px 0;width:100%}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    button{padding:10px 14px;border:none;border-radius:12px;cursor:pointer;background:#22c55e;color:#052e16;font-weight:700}
-    button.secondary{background:#334155;color:#e5e7eb}
-    .center{text-align:center}
-    img{margin-top:10px;border-radius:12px;background:#fff;padding:8px}
-    .tabs{display:flex;gap:10px;flex-wrap:wrap}
-    .tabs button{background:#1f2937;color:#e5e7eb}
-    .tabs button.active{background:#22c55e;color:#052e16}
-    .hidden{display:none}
-    footer{opacity:.7;text-align:center;margin-top:10px;font-size:12px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator Free</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#0f172a;
+  color:#e5e7eb;
+  margin:0;
+  display:flex;
+  justify-content:center;
+}
+.wrap{width:900px;padding:20px}
+h1{text-align:center}
+
+.card{
+  background:#111827;
+  padding:16px;
+  margin-top:15px;
+  border-radius:12px;
+}
+
+.tabs{display:flex;gap:10px;margin-bottom:10px}
+.tabs button{
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:#1f2937;
+  color:white;
+}
+.tabs button.active{
+  background:#22c55e;
+  color:black;
+}
+
+input,select{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+}
+
+button.main{
+  background:#22c55e;
+  border:none;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.hidden{display:none}
+.center{text-align:center}
+img{margin-top:10px;background:white;padding:10px;border-radius:10px}
+
+footer{
+  text-align:center;
+  opacity:0.7;
+  font-size:12px;
+  margin-top:15px;
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div style="display:flex;align-items:center;gap:12px;">
-  <img src="QR code with gradient border logo.png" style="width:45px;border-radius:10px;">
-  <h1 style="margin:0;">Free QR Code Generator</h1>
-</div>
-    <div class="card">
-      <div class="tabs">
-        <button class="tab active" data-tab="text">Text / URL</button>
-        <button class="tab" data-tab="image">Image</button>
-        <button class="tab" data-tab="wifi">WiFi</button>
-        <button class="tab" data-tab="whatsapp">WhatsApp</button>
-      </div>
-    </div>
+<div class="wrap">
 
-    <!-- TEXT / URL -->
-    <div class="card tab-content" id="text">
-      <input id="textInput" placeholder="Enter text or URL" />
-      <div class="row">
-        <select id="size">
-          <option value="200">200x200</option>
-          <option value="300">300x300</option>
-          <option value="400">400x400</option>
-        </select>
-        <input id="color" type="color" value="#000000" />
-      </div>
-      <button onclick="generateTextQR()">Generate QR</button>
-    </div>
+<h1>Free QR Code Generator</h1>
 
-    <!--Image-->
-    <div class="card tab-content" id="image">
-      <h3>Upload Image</h3>
-      <input type="file" id="imageInput" accept="image/*">
-       <input id="color" type="color" value="#000000" />
-      <br><br>
-        <button onclick="downloadQR()">Generate Qr</button>
-    </div>
-
-    <!-- WIFI -->
-    <div class="card tab-content" id="wifi">
-      <input id="ssid" placeholder="WiFi Name (SSID)" />
-      <input id="password" placeholder="Password" />
-      <select id="encryption">
-        <option value="WPA">WPA/WPA2</option>
-        <option value="WEP">WEP</option>
-        <option value="nopass">No Password</option>
-      </select>
-      <button onclick="generateWifiQR()">Generate QR</button>
-    </div>
-
-    <!-- WHATSAPP -->
-    <div class="card tab-content" id="whatsapp">
-      <input id="phone" placeholder="Phone number (with country code)" />
-      <input id="message" placeholder="Message (optional)" />
-      <button onclick="generateWhatsAppQR()">Generate QR</button>
-    </div>
-
-    <footer>Made for learning. by Atul Verma </footer>
+<div class="card">
+  <div class="tabs">
+    <button class="tab active" data-tab="text">Text / URL</button>
+    <button class="tab" data-tab="image">Image</button>
+    <button class="tab" data-tab="wifi">WiFi</button>
+    <button class="tab" data-tab="whatsapp">WhatsApp</button>
   </div>
 
-  <script>
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.tab-content');
+  <!-- TEXT -->
+  <div id="text" class="tab-content">
+    <input id="textInput" placeholder="Enter text or URL">
+    <button class="main" onclick="generateTextQR()">Generate QR</button>
+  </div>
 
-    tabs.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        tabs.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        contents.forEach(c=>c.classList.add('hidden'));
-        document.getElementById(btn.dataset.tab).classList.remove('hidden');
-      });
-    });
+  <!-- IMAGE -->
+  <div id="image" class="tab-content hidden">
+    <h3>Upload Image</h3>
+    <input type="file" id="imageInput" accept="image/*">
+    <button class="main" onclick="generateImageQR()">Generate QR</button>
+  </div>
 
-    function makeQR(data, size, color){
-      const s = size || 300;
-      const col = (color || '#000000').replace('#','');
-      const url = `https://api.qrserver.com/v1/create-qr-code/?size=${s}x${s}&color=${col}&data=${encodeURIComponent(data)}`;
-      document.getElementById('qrImage').src = url;
-    }
+  <!-- WIFI -->
+  <div id="wifi" class="tab-content hidden">
+    <input id="ssid" placeholder="WiFi Name">
+    <input id="password" placeholder="Password">
+    <button class="main" onclick="generateWifiQR()">Generate QR</button>
+  </div>
 
-    function generateTextQR(){
-      const text = document.getElementById('textInput').value.trim();
-      const size = document.getElementById('size').value;
-      const color = document.getElementById('color').value;
-      if(!text){ alert('Enter text or URL'); return; }
-      makeQR(text, size, color);
-    }
+  <!-- WHATSAPP -->
+  <div id="whatsapp" class="tab-content hidden">
+    <input id="phone" placeholder="Phone number">
+    <input id="message" placeholder="Message">
+    <button class="main" onclick="generateWhatsAppQR()">Generate QR</button>
+  </div>
+</div>
 
-    function generateWifiQR(){
-      const ssid = document.getElementById('ssid').value.trim();
-      const pass = document.getElementById('password').value.trim();
-      const enc = document.getElementById('encryption').value;
-      if(!ssid){ alert('Enter SSID'); return; }
-      const payload = `WIFI:T:${enc};S:${ssid};P:${pass};;`;
-      makeQR(payload, 300, '#000000');
-    }
+<div class="card center">
+  <img id="qrImage" src="" alt="QR will appear here">
+</div>
 
-    function generateWhatsAppQR(){
-      const phone = document.getElementById('phone').value.trim();
-      const msg = document.getElementById('message').value.trim();
-      if(!phone){ alert('Enter phone number'); return; }
-      const url = `https://wa.me/${phone}${msg?`?text=${encodeURIComponent(msg)}`:''}`;
-      makeQR(url, 300, '#000000');
-    }
+<!-- ✅ Footer -->
+<footer>
+  Made for learning. by Atul Verma
+</footer>
 
-    function downloadQR(){
-      const img = document.getElementById('qrImage');
-      if(!img.src){ alert('Generate QR first'); return; }
-      const a = document.createElement('a');
-      a.href = img.src;
-      a.download = 'qr.png';
-      a.click();
-    }
+</div>
 
-    function clearQR(){
-      document.getElementById('qrImage').src = '';
-    }
-  </script>
+<script>
+// TAB SWITCH
+const tabs = document.querySelectorAll(".tab");
+const contents = document.querySelectorAll(".tab-content");
+
+tabs.forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    tabs.forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+
+    contents.forEach(c=>c.classList.add("hidden"));
+    document.getElementById(tab.dataset.tab).classList.remove("hidden");
+  });
+});
+
+// QR GENERATOR
+function makeQR(data){
+  const url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(data);
+  document.getElementById("qrImage").src = url;
+}
+
+// TEXT
+function generateTextQR(){
+  const text = document.getElementById("textInput").value;
+  if(!text) return alert("Enter text");
+  makeQR(text);
+}
+
+// IMAGE
+function generateImageQR(){
+  const file = document.getElementById("imageInput").files[0];
+  if(!file) return alert("Upload image first");
+
+  const reader = new FileReader();
+  reader.onload = function(){
+    makeQR(reader.result);
+  }
+  reader.readAsDataURL(file);
+}
+
+// WIFI
+function generateWifiQR(){
+  const ssid = document.getElementById("ssid").value;
+  const pass = document.getElementById("password").value;
+
+  const data = `WIFI:T:WPA;S:${ssid};P:${pass};;`;
+  makeQR(data);
+}
+
+// WHATSAPP
+function generateWhatsAppQR(){
+  const phone = document.getElementById("phone").value;
+  const msg = document.getElementById("message").value;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  makeQR(url);
+}
 </script>
+
 </body>
 </html>

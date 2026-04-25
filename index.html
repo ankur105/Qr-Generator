@@ -171,6 +171,19 @@ footer{
 </div>
 
 <button onclick="downloadQR()">Download PNG</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+function downloadQR() {
+  let box = document.getElementById("qrBox");
+
+  html2canvas(box).then(canvas => {
+    let link = document.createElement("a");
+    link.download = "qr-code.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+</script>
 
 <footer>
   <p>Made for learning. by Atul Verma</p>

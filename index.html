@@ -167,7 +167,7 @@ footer{
 
 <!-- QR OUTPUT -->
 <div id="qrBox" class="design1">
-<img id="qrImage" src="">
+<img id="qrImage" src="" crossorigin="anonymous">
 </div>
 
 <button onclick="downloadQR()">Download PNG</button>
@@ -176,7 +176,10 @@ footer{
 function downloadQR() {
   let box = document.getElementById("qrBox");
 
-  html2canvas(box).then(canvas => {
+  html2canvas(box, {
+    useCORS: true,
+    allowTaint: true
+  }).then(canvas => {
     let link = document.createElement("a");
     link.download = "qr-code.png";
     link.href = canvas.toDataURL("image/png");
